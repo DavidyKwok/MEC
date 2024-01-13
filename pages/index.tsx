@@ -1,9 +1,187 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import Tutorial from "@/components/tutorial";
+// [meta] name: SignUpPage
+// [meta] description: create a signup page which includes name, email, password, experience level, job-type, location, skills, minimum salary and accessibility features
 
-const inter = Inter({ subsets: ["latin"] });
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { RadioGroup } from "@/components/ui/radio-group";
+import { RadioGroupItem } from "@/components/ui/radio-group";
+import { Select } from "@/components/ui/select";
+import { SelectContent } from "@/components/ui/select";
+import { SelectGroup } from "@/components/ui/select";
+import { SelectItem } from "@/components/ui/select";
+import { SelectTrigger } from "@/components/ui/select";
+import { SelectValue } from "@/components/ui/select";
+import { Slider } from "@/components/ui/slider";
+import { DollarSign } from "lucide-react";
+import { Lock } from "lucide-react";
+import { Mail } from "lucide-react";
+import { MapPin } from "lucide-react";
+import { useState } from "react";
 
-export default function Home() {
-  return <Tutorial />;
+export default function SignUpPage() {
+  const [salaryValue, setSalaryValue] = useState(30000);
+
+  return (
+    <div className="bg-white dark:bg-black p-8 max-w-2xl mx-auto my-10 rounded-lg shadow-lg">
+      <h1 className="text-2xl font-bold mb-6">Sign Up</h1>
+      <form>
+        <div className="mb-4">
+          <Label htmlFor="name">Name</Label>
+          <Input type="text" id="name" placeholder="John Doe" />
+        </div>
+        <div className="mb-4">
+          <Label htmlFor="email">Email</Label>
+          <div className="flex items-center border rounded">
+            <Mail className="ml-2" />
+            <Input
+              type="email"
+              id="email"
+              placeholder="john.doe@example.com"
+              className="border-none"
+            />
+          </div>
+        </div>
+        <div className="mb-4">
+          <Label htmlFor="password">Password</Label>
+          <div className="flex items-center border rounded">
+            <Lock className="ml-2" />
+            <Input
+              type="password"
+              id="password"
+              placeholder="********"
+              className="border-none"
+            />
+          </div>
+        </div>
+        <div className="mb-4">
+          <Label>Experience Level</Label>
+          <RadioGroup defaultValue="entry-level">
+            <div className="flex space-x-4">
+              <div className="flex items-center">
+                <RadioGroupItem value="entry-level" id="entry-level" />
+                <Label htmlFor="entry-level">Entry Level</Label>
+              </div>
+              <div className="flex items-center">
+                <RadioGroupItem
+                  value="mid-senior-level"
+                  id="mid-senior-level"
+                />
+                <Label htmlFor="mid-senior-level">Mid-Senior Level</Label>
+              </div>
+              <div className="flex items-center">
+                <RadioGroupItem value="associate" id="associate" />
+                <Label htmlFor="associate">Associate</Label>
+              </div>
+              <div className="flex items-center">
+                <RadioGroupItem value="director" id="director" />
+                <Label htmlFor="director">Director</Label>
+              </div>
+            </div>
+          </RadioGroup>
+        </div>{" "}
+        <div className="mb-4">
+          <Label htmlFor="job-type">Job Type</Label>
+          <Select>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Select job type" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="full-time">Full-Time</SelectItem>
+                <SelectItem value="part-time">Part-Time</SelectItem>
+                <SelectItem value="contract">Contract</SelectItem>
+                <SelectItem value="internship">Internship</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="mb-4">
+          <Label>Skills</Label>
+          <div className="flex gap-2 flex-wrap">
+            <Input
+              type="text"
+              id="skill1"
+              placeholder="Skill 1"
+              className="mb-2"
+            />
+
+            <Input
+              type="text"
+              id="skill2"
+              placeholder="Skill 2"
+              className="mb-2"
+            />
+
+            <Input
+              type="text"
+              id="skill3"
+              placeholder="Skill 3"
+              className="mb-2"
+            />
+
+            <Input
+              type="text"
+              id="skill4"
+              placeholder="Skill 4"
+              className="mb-2"
+            />
+
+            <Input
+              type="text"
+              id="skill5"
+              placeholder="Skill 5"
+              className="mb-2"
+            />
+          </div>
+        </div>
+        <div className="mb-4">
+          <Label htmlFor="location">Location</Label>
+          <div className="flex items-center border rounded">
+            <MapPin className="ml-2" />
+            <Input
+              type="text"
+              id="location"
+              placeholder="City or Remote"
+              className="border-none"
+            />
+          </div>
+        </div>{" "}
+        <div className="mb-4">
+          <Label>Minimum Salary</Label>
+          <div className="flex items-center space-x-2">
+            <DollarSign />
+            <Input
+              type="text"
+              value={`$${salaryValue.toLocaleString()}`}
+              readOnly
+              className="w-full rounded border-none"
+              disabled
+            />
+          </div>
+          <Slider
+            defaultValue={[salaryValue]}
+            min={20000}
+            max={200000}
+            step={1000}
+            onValueChange={(value) => setSalaryValue(value[0])}
+          />
+        </div>
+        <div className="mb-4"></div>
+        <div className="mb-4">
+          <Button type="submit" className="w-full mb-4 bg-[#5d7cd8e6]">
+            Submit
+          </Button>
+          <Label htmlFor="accessibility">Accessibility Features</Label>
+          <Input
+            type="text"
+            id="accessibility"
+            placeholder="Describe your accessibility needs"
+            className="mb2"
+          />
+        </div>{" "}
+      </form>{" "}
+    </div>
+  );
 }
