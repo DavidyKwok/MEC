@@ -116,56 +116,7 @@ function Tutorial() {
   return (
     <div
       className="h-screen flex justify-center items-center bg-[#1E1B26] dark:bg-black w-screen">
-      <div className="mx-auto p-4 max-w-[88rem]">
-        <div className="mb-4 text-left">
-          <h1 className="font-bold text-white mb-2.5 text-4xl">
-            {tutorialData[currentGif].title}
-          </h1>
-          <p className="text-md text-gray-300 mt-1 text-3xl">
-            {tutorialData[currentGif].subtitle}
-          </p>
-          {tutorialData[currentGif].customJSX}
-        </div>
-        <div className="relative mb-4 flex justify-center">
-          <div
-            className="rounded-lg overflow-hidden flex justify-center items-center bg-[#1e1b26] w-[86vh] border-0 border-white border-solid">
-            <img
-              src={tutorialData[currentGif].gif}
-              alt={`Step ${currentGif}`}
-              className="w-full h-full border-0 border-white border-solid" />
-          </div>
-        </div>
-        <div className="flex justify-center space-x-1 mb-9">
-          {tutorialData.map((_, index) => (
-            <button
-              key={index}
-              className={`h-2 w-2 rounded-full ${
-                index === currentGif ? "bg-gray-500" : "bg-white"
-              }`}
-              onClick={() => setCurrentGif(index)} />
-          ))}
-        </div>
-        <div><div className="flex items-center justify-center space-x-4">
-              {currentGif === 0 ? <Button
-                variant="ghost"
-                onClick={nextGif}
-                className="text-white bg-[#6559EC] hover:bg-[#6559EC]/50 text-2xl font-normal rounded-3xl p-6"
-                disabled={currentGif === tutorialData.length - 1}>Get Started</Button> : <>
-                <Button
-                  variant="ghost"
-                  onClick={prevGif}
-                  className="text-white bg-[#6559EC] hover:bg-[#6559EC]/50 text-2xl font-normal rounded-3xl p-6"
-                  disabled={currentGif === 0}>
-                  <ChevronLeft className="h-6 w-6" />Prev</Button>
-                {currentGif === tutorialData.length - 1 ? null : <Button
-                  variant="ghost"
-                  onClick={nextGif}
-                  className="text-white bg-[#6559EC] hover:bg-[#6559EC]/50 text-2xl font-normal rounded-3xl p-6"
-                  disabled={currentGif === tutorialData.length - 1}>Next<ChevronRight className="h-6 w-6" />
-                </Button>}
-              </>}
-            </div><p className="text-md text-gray-400 text-center mt-3.5 text-2xl">Reminder: select "Preview Mode" in the top-right to click these buttons</p></div>
-      </div>{" "}
+      {" "}
     </div>
   );
 }
